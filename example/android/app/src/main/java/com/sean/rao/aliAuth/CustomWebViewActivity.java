@@ -1,4 +1,4 @@
-package com.sean.rao.aliAuth;
+package xyz.todokit.plato;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;

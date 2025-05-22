@@ -53,9 +53,9 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     /// 初始化第三方按钮数据
     setState(() {
       androidSk =
-          "kReOFbE7mWUhefnT2BAGdKCGqgtnZbcPa/vGFc6z//ytIrOxZRndH0pdIeHM465OfdpHPMFxgPATR1EnKE7aonZ5hyEP1CE4Wz0QhWEWNTg7mmeq8hstbgFtjP8boZx/mPalQZmfD5heQ9E5Rahg4tWQfsCBENlQLgR/6vqtA8F3knXFa6awGegHj3C8bSXyCVj2OKxZFAvrZ1+1bd7TD2We3HyXsSJoDBLGuSqZIZ3VkExNC8jX4fL9uP5Ul9VVNSjahTn70u+9RYdB0BrtJpw+FPytOIsapzqdfrtqkFTk3v0+BcVJnA==";
+          "dgmVsgojQTFZirqdQ0SGbzDwZ94W68ZY8EHElQxQD1BnPwvQ2wVC3Y/DJJwnQBJ/moSzVjU9/VeJEskuRIN0es+hYc1d21LfS3DmFZ1r2ji+jmlSAyPK2ZTbmhsb9SKiwVqwBfyzk5KwkTtMODBFKOZpn8CFbzAp02gdoq8bIdaSq63WNqtso6AZFPxg5H23SiJRrth55NJFVqupGAlU3mq8twbVvGAjspFjh6KXLTRe8uY3BqCGPs0zz2139uBtRySSxjgj9eF5MV0FpK3SYeE7605f+KCl8PIxIu4GbqHzKbiDynjqKg==";
       iosSk =
-          "mjWr9sTsoXwmMx7qf0T2KQOQBpqkxeNW9I1ZNZ96ZCeBbeD9xYOUaC2mE9mcqog041VCot2sLcy9UArf+re517e5R9yowKCjf15VglZSP/HweRhOT8Cvci43zagyRqo40l85LTnZ5uJPaVauDLJB7hOTIkNPGm3fb621k6A6ZDh6aDGAKWyy0tPUPV/9RFrfeig9SURNe9Vl/Aok6SKg+SftM30uk2W8wdbV8gMVbU51Odnoapm2ZlAJYmCrdoXvROW5qc8pbQ8=";
+          "wxnOrTxbchmKO956+zak1rutDLkr6lpERcxzCerZ+/NVjhd4hXg+2VCTtkmgQSb1x/W4gGrG3KkNtMm8QHJWvneNUMaA4hTLB+Yh01khwNduIYvqi7Bv00kzcbZ9cVNdoGmUhE0ZtGApCqDD7OIHIiPpun9JwiWYW+GW+tZVSvIR2okKrZZG0pSaNBZjKD6EeMv5ERoGSSKCuqew/JUxzAR1JvkoAF4dnm0Z4ZZImGwW/W0jxjIr6qg6tHerZnpa/ShEtDa5Ik0=";
 
       screenWidth =
           (PlatformDispatcher.instance.views.first.physicalSize.width /
@@ -88,12 +88,12 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         "color": "#026ED2",
         'itemWidth': 50,
         'itemHeight': 50,
-        "viewItemName": ["支付宝", "淘宝", "微博"],
-        "viewItemPath": [
-          "assets/alipay.png",
-          "assets/taobao.png",
-          "assets/sina.png"
-        ]
+        // "viewItemName": ["支付宝", "淘宝", "微博"],
+        // "viewItemPath": [
+        //   "assets/alipay.png",
+        //   "assets/taobao.png",
+        //   "assets/sina.png"
+        // ]
       };
       customThirdView = CustomThirdView.fromJson(configMap);
     });
@@ -324,8 +324,8 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       lightColor: false,
       isStatusBarHidden: false,
       statusBarUIFlag: UIFAG.systemUiFalgFullscreen,
-      navColor: "#026ED2",
-      navText: "一键登录插件演示",
+      navColor: "#ffffff",
+      navText: "手机号注册",
       navTextColor: "#000000",
       navReturnImgPath: "assets/return_btn.png",
       navReturnImgWidth: 30,
@@ -338,7 +338,7 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       logoHidden: false,
       logBtnText: "一键登录",
       logBtnTextSize: 16,
-      logBtnTextColor: "#FFF000",
+      logBtnTextColor: "#ffffff",
       protocolOneName: "《通达理》",
       protocolOneURL: "https://tunderly.com",
       protocolTwoName: "《思预云》",
@@ -356,7 +356,7 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           "assets/login_btn_normal.png,assets/login_btn_unable.png,assets/login_btn_press.png",
       loadingImgPath: "authsdk_waiting_icon",
       logoOffsetY_B: -1,
-      numberColor: "#ffffff",
+      numberColor: "#000000",
       numberSize: 28,
       logoScaleType: ScaleType.fitXy,
       numFieldOffsetY: unit * 7,
@@ -425,6 +425,7 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
        * "https://upfile.asqql.com/2009pasdfasdfic2009s305985-ts/2018-7/20187232061776607.gif"
        * "https://img.zcool.cn/community/01dda35912d7a3a801216a3e3675b3.gif",
        */
+      // pageBackgroundPath: "assets/background_image.jpeg",
       pageBackgroundPath: "assets/background_image.jpeg",
       customThirdView: customThirdView,
     );
@@ -864,12 +865,12 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       "size": 12,
       'itemWidth': 40,
       'itemHeight': 40,
-      "viewItemName": ["支付宝", "淘宝", "微博"],
-      "viewItemPath": [
-        "assets/alipay.png",
-        "assets/taobao.png",
-        "assets/sina.png"
-      ]
+      // "viewItemName": ["支付宝", "淘宝", "微博"],
+      // "viewItemPath": [
+      //   "assets/alipay.png",
+      //   "assets/taobao.png",
+      //   "assets/sina.png"
+      // ]
     };
 
     return AliAuthModel(
@@ -1120,12 +1121,12 @@ class MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
       "color": "#616161",
       'itemWidth': 40,
       'itemHeight': 40,
-      "viewItemName": ["支付宝", "淘宝", "微博"],
-      "viewItemPath": [
-        "assets/alipay.png",
-        "assets/taobao.png",
-        "assets/sina.png"
-      ]
+      // "viewItemName": ["支付宝", "淘宝", "微博"],
+      // "viewItemPath": [
+      //   "assets/alipay.png",
+      //   "assets/taobao.png",
+      //   "assets/sina.png"
+      // ]
     };
     return AliAuthModel(
       androidSk,
