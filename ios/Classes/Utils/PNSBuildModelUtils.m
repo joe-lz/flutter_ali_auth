@@ -230,6 +230,11 @@
   }
 
   model.privacyAlertContentUnderline = [viewConfig boolValueForKey: @"privacyAlertProtocolNameUseUnderLine" defaultValue: NO];
+  
+  // 新增协议颜色处理
+  NSString *protocolColor = [viewConfig stringValueForKey:@"protocolColor" defaultValue:nil];
+  NSString *protocolCustomColor = [viewConfig stringValueForKey:@"protocolCustomColor" defaultValue:nil];
+
   // 协议1内容颜色
   model.privacyOneColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnOneColor" defaultValue: @"#000000"]];
   // 协议2内容颜色
@@ -238,7 +243,7 @@
   model.privacyThreeColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnThreeColor" defaultValue: @"#000000"]];
   // 运营商协议内容颜色
   model.privacyOperatorColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnColor" defaultValue: @"#000000"]];
-  
+
   // 二次协议1内容颜色
   model.privacyAlertOneColor = [self getColor: [viewConfig stringValueForKey: @"privacyAlertOwnOneColor" defaultValue: @"#000000"]];
   // 二次协议2内容颜色
@@ -587,6 +592,7 @@
               NSFontAttributeName: [UIFont systemFontOfSize: [viewConfig floatValueForKey: @"logBtnTextSize" defaultValue: 23]]
             }
   ];
+  /// 登录按钮背景设置
   NSArray *logBtnCustomBackgroundImagePath = [[viewConfig stringValueForKey: @"logBtnBackgroundPath" defaultValue: @","] componentsSeparatedByString:@","];
   if (logBtnCustomBackgroundImagePath.count == 3) {
     // login_btn_normal
@@ -641,6 +647,11 @@
   }
 
   model.privacyAlertContentUnderline = [viewConfig boolValueForKey: @"privacyAlertProtocolNameUseUnderLine" defaultValue: NO];
+  
+  // 新增协议颜色处理
+  NSString *protocolColor = [viewConfig stringValueForKey:@"protocolColor" defaultValue:nil];
+  NSString *protocolCustomColor = [viewConfig stringValueForKey:@"protocolCustomColor" defaultValue:nil];
+
   // 协议1内容颜色
   model.privacyOneColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnOneColor" defaultValue: @"#000000"]];
   // 协议2内容颜色
@@ -649,7 +660,7 @@
   model.privacyThreeColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnThreeColor" defaultValue: @"#000000"]];
   // 运营商协议内容颜色
   model.privacyOperatorColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnColor" defaultValue: @"#000000"]];
-  
+
   // 二次协议1内容颜色
   model.privacyAlertOneColor = [self getColor: [viewConfig stringValueForKey: @"privacyAlertOwnOneColor" defaultValue: @"#000000"]];
   // 二次协议2内容颜色
@@ -1064,7 +1075,7 @@
           [button setTitleColor: [self getColor: color] forState:UIControlStateNormal];
           [button setBackgroundImage:[self changeUriPathToImage: customArray[i]] forState:UIControlStateNormal];
           [button addTarget:target action: selector forControlEvents:UIControlEventTouchUpInside];
-      
+
           [customArrayView addObject: button];
         }
         
@@ -1127,7 +1138,12 @@
     }
 
     model.privacyAlertContentUnderline = [viewConfig boolValueForKey: @"privacyAlertProtocolNameUseUnderLine" defaultValue: NO];
-    // 协议1内容颜色
+    
+    // 新增协议颜色处理
+    NSString *protocolColor = [viewConfig stringValueForKey:@"protocolColor" defaultValue:nil];
+    NSString *protocolCustomColor = [viewConfig stringValueForKey:@"protocolCustomColor" defaultValue:nil];
+
+       // 协议1内容颜色
     model.privacyOneColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnOneColor" defaultValue: @"#000000"]];
     // 协议2内容颜色
     model.privacyTwoColor = [self getColor: [viewConfig stringValueForKey: @"protocolOwnTwoColor" defaultValue: @"#000000"]];
@@ -1623,7 +1639,10 @@
                       [model setValue: @([dict boolValueForKey: key defaultValue: NO] ? UIStatusBarStyleDefault : UIStatusBarStyleLightContent) forKey:newKey];
                     }
                   } else {
-                    [model setValue: [self getColor: [dict stringValueForKey: key defaultValue: @"#23effe"]] forKey:newKey];
+                    // 优先使用 protocolCustomColor
+                    NSString *protocolCustomColor = [dict stringValueForKey:@"protocolCustomColor" defaultValue:nil];
+                    NSString *colorValue = protocolCustomColor ?: @"#23effe";
+                    [model setValue: [self getColor: [dict stringValueForKey: key defaultValue: colorValue]] forKey:newKey];
                   }
               } else if ([key containsString:@"Size"]) {
                 [model setValue: [UIFont systemFontOfSize: [dict floatValueForKey: key defaultValue: 17]] forKey:newKey];
