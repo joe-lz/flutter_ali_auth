@@ -88,7 +88,7 @@
                          CGRectGetHeight(frame)
                        );
       frame.origin.y = [viewConfig floatValueForKey: @"navReturnOffsetY" defaultValue: 5];
-      frame.origin.x = [viewConfig floatValueForKey: @"navReturnOffsetX" defaultValue: 15];
+      frame.origin.x = [viewConfig floatValueForKey: @"navReturnOffsetX" defaultValue: 5]; // Changed default from 15 to 0
       
       frame.size.width = [viewConfig floatValueForKey: @"navReturnImgWidth" defaultValue: 40];
       frame.size.height = [viewConfig floatValueForKey: @"navReturnImgHeight" defaultValue: 40];
@@ -1749,7 +1749,7 @@
              CGRectGetHeight(frame)
            );
           frame.origin.y = [customReturnBtn floatValueForKey: @"top" defaultValue: 5];
-          frame.origin.x = [customReturnBtn floatValueForKey: @"left" defaultValue: 15];
+          frame.origin.x = [customReturnBtn floatValueForKey: @"left" defaultValue: 5];
           frame.size.width = [customReturnBtn floatValueForKey: @"width" defaultValue: 40];
           frame.size.height = [customReturnBtn floatValueForKey: @"height" defaultValue: 40];
           return frame;
@@ -1769,14 +1769,42 @@
              CGRectGetHeight(frame)
            );
           frame.origin.y = [dict floatValueForKey: @"navReturnOffsetY" defaultValue: 5];
-          frame.origin.x = [dict floatValueForKey: @"navReturnOffsetX" defaultValue: 15];
+          frame.origin.x = [dict floatValueForKey: @"navReturnOffsetX" defaultValue: 5];
           frame.size.width = [dict floatValueForKey: @"navReturnImgWidth" defaultValue: 40];
           frame.size.height = [dict floatValueForKey: @"navReturnImgHeight" defaultValue: 40];
           return frame;
         };
       }
     }
+  } else {
+    // model.navIsHidden, model.navColor, model.navBackImage, model.hideNavBackItem are set by mj_objectWithKeyValues
+    // Setup navBackButtonFrameBlock if nav bar and back button are visible, and it's not an alert style
+    if (!model.hideNavBackItem) { // Corrected BOOL access
+        bool isAlertStyle = (PNSBuildModelStyleAlertPortrait == style ||
+                            PNSBuildModelStyleAlertLandscape == style ||
+                            PNSBuildModelStyleSheetPortrait == style ||
+                            PNSDIYAlertPortraitFade == style || 
+                            PNSDIYAlertPortraitDropDown == style); // Removed PNSDIYAlertPortraitBounce
+        
+        if (!isAlertStyle) { // Apply to full-screen styles
+            model.navBackButtonFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
+                CGFloat navReturnOffsetY = [dict floatValueForKey:@"navReturnOffsetY" defaultValue:5.0];
+                CGFloat navReturnOffsetX = [dict floatValueForKey:@"navReturnOffsetX" defaultValue: 5]; // Default to 0
+                
+                CGFloat navReturnImgWidth = [dict floatValueForKey:@"navReturnImgWidth" defaultValue:40.0];
+                CGFloat navReturnImgHeight = [dict floatValueForKey:@"navReturnImgHeight" defaultValue:40.0];
+
+                frame.origin.y = navReturnOffsetY;
+                frame.origin.x = navReturnOffsetX;
+                
+                frame.size.width = navReturnImgWidth;
+                frame.size.height = navReturnImgHeight;
+                return frame;
+            };
+        }
+    }
   }
+
   #pragma mark 3、Logo
   if(!model.logoIsHidden && model.logoImage){
     /// logo 默认水平居中
